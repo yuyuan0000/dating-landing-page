@@ -2,7 +2,30 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>附近单身女生正在找你</title>
+
+  <!-- Google Tag Manager (示例) -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX'); // 替换 GTM ID
+  </script>
+
+  <!-- Facebook Pixel (示例) -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);
+    t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID'); // 替换为你的 Pixel ID
+    fbq('track', 'PageView');
+  </script>
+
   <style>
     body {
       margin: 0;
@@ -16,16 +39,17 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       backdrop-filter: brightness(0.6);
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       margin-bottom: 1rem;
     }
 
     p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-bottom: 2rem;
     }
 
@@ -34,22 +58,102 @@
       border: none;
       color: white;
       padding: 1rem 2rem;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       border-radius: 10px;
       cursor: pointer;
       transition: 0.3s ease;
+      margin: 0.5rem;
     }
 
     button:hover {
       background-color: #e91e63;
     }
+
+    #email-form {
+      margin-top: 2rem;
+    }
+
+    input[type="email"] {
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: none;
+      width: 250px;
+      font-size: 1rem;
+    }
+
+    .lang-switch {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .lang-switch button {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid white;
+      border-radius: 5px;
+    }
   </style>
 </head>
+
 <body>
-  <h1>有本地单身女孩想认识你</h1>
-  <p>无需注册，点击下方即可聊天</p>
-  <button onclick="window.location.href='https://wa.me/85264459622';">
+  <div class="lang-switch">
+    <button onclick="switchLang('zh')">中文</button>
+    <button onclick="switchLang('en')">EN</button>
+  </div>
+
+  <h1 id="title">有本地单身女孩想认识你</h1>
+  <p id="desc">无需注册，点击下方即可聊天</p>
+  <button id="chat-btn" onclick="window.location.href='https://wa.me/85264459622';">
     开始聊天
   </button>
+
+  <!-- 可选邮箱收集 -->
+  <form id="email-form" onsubmit="event.preventDefault(); alert('谢谢提交！');">
+    <input type="email" placeholder="留下你的邮箱以获取更多信息" required>
+    <button type="submit">提交</button>
+  </form>
+
+  <p id="timer-text">5 秒后将自动跳转...</p>
+
+  <script>
+    // 倒计时跳转逻辑
+    let seconds = 5;
+    const timerText = document.getElementById("timer-text");
+    const countdown = setInterval(() => {
+      seconds--;
+      timerText.textContent = seconds + " 秒后将自动跳转...";
+      if (seconds <= 0) {
+        clearInterval(countdown);
+        window.location.href = 'https://wa.me/85264459622';
+      }
+    }, 1000);
+
+    // 多语言支持
+    const translations = {
+      zh: {
+        title: "有本地单身女孩想认识你",
+        desc: "无需注册，点击下方即可聊天",
+        button: "开始聊天",
+        timer: "5 秒后将自动跳转..."
+      },
+      en: {
+        title: "Local single women want to chat with you",
+        desc: "No registration needed. Click below to start chatting.",
+        button: "Start Chatting",
+        timer: "Redirecting in 5 seconds..."
+      }
+    };
+
+    function switchLang(lang) {
+      document.getElementById("title").textContent = translations[lang].title;
+      document.getElementById("desc").textContent = translations[lang].desc;
+      document.getElementById("chat-btn").textContent = translations[lang].button;
+      timerText.textContent = translations[lang].timer;
+    }
+  </script>
 </body>
 </html>
+
