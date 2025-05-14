@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: "Segoe UI", sans-serif;
-      color: white;
+      color: #ff4081;
       text-align: center;
       background: url('https://i.imgur.com/r6d0e5h.png') no-repeat center center;
       background-size: cover;
@@ -23,7 +23,7 @@
     }
 
     h1 {
-      font-size: 3.5rem; /* 字体更大 */
+      font-size: 3.5rem;
       background: linear-gradient(45deg, #ff4081, #e91e63, #9c27b0);
       -webkit-background-clip: text;
       color: transparent;
@@ -32,9 +32,16 @@
 
     p {
       font-size: 1.4rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       max-width: 600px;
       line-height: 1.6;
+      color: #ff4081;
+    }
+
+    .countdown {
+      font-size: 1rem;
+      color: #ff80ab;
+      margin-top: 0.5rem;
     }
 
     .fade-in {
@@ -79,12 +86,9 @@
 <body>
   <h1>Hello, Friend</h1>
   <p>Nice to meet you!</p>
-  <p>
-    I'm not good at grand openings,<br>
-    and I don't care much for empty small talk.<br>
-    But I do enjoy slowly getting to know someone,<br>
-    and quietly growing closer.
-  </p>
+  <p>Life is beautiful, and I hope to share its wonders with you!</p>
+
+  <p class="countdown" id="countdownText">Redirecting in 6 seconds...</p>
 
   <div id="btnWrap" class="fade-in">
     <button onclick="window.location.href='https://wa.me/85264459622';">
@@ -93,14 +97,25 @@
   </div>
 
   <script>
-    // 等待页面加载完后显示按钮
     window.onload = function () {
       setTimeout(() => {
         document.getElementById("btnWrap").classList.add("show");
-      }, 500); // 0.5秒后按钮淡入
+      }, 500);
+
+      let seconds = 6;
+      const countdownText = document.getElementById("countdownText");
+      const interval = setInterval(() => {
+        seconds--;
+        if (seconds > 0) {
+          countdownText.textContent = `Redirecting in ${seconds} seconds...`;
+        } else {
+          clearInterval(interval);
+          countdownText.textContent = "Redirecting...";
+          window.location.href = "https://wa.me/85264459622";
+        }
+      }, 1000);
     };
   </script>
 </body>
 </html>
-
 
