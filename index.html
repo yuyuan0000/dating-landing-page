@@ -35,23 +35,6 @@
       margin-bottom: 1rem;
       max-width: 600px;
       line-height: 1.6;
-      color: #ff4081;
-    }
-
-    .countdown {
-      font-size: 1rem;
-      color: #ff80ab;
-      margin-top: 0.5rem;
-    }
-
-    .fade-in {
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-      margin-top: 2rem;
-    }
-
-    .fade-in.show {
-      opacity: 1;
     }
 
     button {
@@ -62,24 +45,11 @@
       font-size: 1.2rem;
       border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s ease, transform 0.6s ease-in-out;
-      animation: buttonPulse 2s infinite;
+      transition: background 0.3s ease;
     }
 
     button:hover {
       background-color: #e91e63;
-    }
-
-    @keyframes buttonPulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-      100% {
-        transform: scale(1);
-      }
     }
   </style>
 </head>
@@ -88,34 +58,8 @@
   <p>Nice to meet you!</p>
   <p>Life is beautiful, and I hope to share its wonders with you!</p>
 
-  <p class="countdown" id="countdownText">Redirecting in 6 seconds...</p>
-
-  <div id="btnWrap" class="fade-in">
-    <button onclick="window.location.href='https://wa.me/85264459622';">
-      Send Message
-    </button>
-  </div>
-
-  <script>
-    window.onload = function () {
-      setTimeout(() => {
-        document.getElementById("btnWrap").classList.add("show");
-      }, 500);
-
-      let seconds = 6;
-      const countdownText = document.getElementById("countdownText");
-      const interval = setInterval(() => {
-        seconds--;
-        if (seconds > 0) {
-          countdownText.textContent = `Redirecting in ${seconds} seconds...`;
-        } else {
-          clearInterval(interval);
-          countdownText.textContent = "Redirecting...";
-          window.location.href = "https://wa.me/85264459622";
-        }
-      }, 1000);
-    };
-  </script>
+  <a href="redirect.html">
+    <button>Continue</button>
+  </a>
 </body>
 </html>
-
